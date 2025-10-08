@@ -1,3 +1,16 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-dog-walk",
+      "description": "Happy dog on a walk with its walker in a sunny park",
+      "imageUrl": "https://picsum.photos/seed/dogwalk1/1920/1080",
+      "imageHint": "dog walking"
+    },
+    {
+      "id": "join-community-dog",
+      "description": "Person playing with a happy dog in a field",
+      "imageUrl": "https://picsum.photos/seed/dogplay/1200/800",
+      "imageHint": "person dog"
+    }
+  ]
 }
