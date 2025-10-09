@@ -18,6 +18,7 @@ import { useToast } from "@/hooks/use-toast";
 export function GenAiMatcher() {
   const [isPending, startTransition] = useTransition();
   const [suggestion, setSuggestion] = useState<string | null>(null);
+  const [price, setPrice] = useState<number | null>(null);
   const { toast } = useToast();
 
   const form = useForm<SuggestWalkerFormValues>({
@@ -28,6 +29,7 @@ export function GenAiMatcher() {
       dogSize: undefined,
       ownerPreferences: '',
       location: '',
+      walkDuration: undefined,
     },
   });
 
@@ -36,7 +38,10 @@ export function GenAiMatcher() {
     startTransition(async () => {
       const result = await getWalkerSuggestion(values);
       if (result.success) {
-        setSuggestion(result.suggestion);
+        setSuggestion(result.suggestion ?? null);
+        const basePrice = values.walkDuration === '30' ? 15 : values.walkDuration === '60' ? 25 : 35;
+        const sizeMultiplier = values.dogSize === 'small' ? 1 : values.dogSize === 'medium' ? 1.2 : 1.5;
+        setPrice(basePrice * sizeMultiplier);
       } else {
         toast({
           variant: "destructive",
@@ -143,6 +148,28 @@ export function GenAiMatcher() {
                     </div>
                     <FormField
                       control={form.control}
+                      name="walkDuration"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Duración del Paseo</FormLabel>
+                          <Select onValueChange={field.onChange} defaultValue={field.value}>
+                            <FormControl>
+                              <SelectTrigger>
+                                <SelectValue placeholder="Selecciona una duración" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              <SelectItem value="30">30 minutos</SelectItem>
+                              <SelectItem value="60">60 minutos</SelectItem>
+                              <SelectItem value="90">90 minutos</SelectItem>
+                            </SelectContent>
+                          </Select>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
                       name="ownerPreferences"
                       render={({ field }) => (
                         <FormItem>
@@ -185,6 +212,7 @@ export function GenAiMatcher() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-lg text-foreground">{suggestion}</p>
+                  {price && <p className="text-lg text-foreground font-bold mt-4">Precio: ${price.toFixed(2)}</p>}
                 </CardContent>
                 <CardFooter>
                   <Button className="w-full">Contactar a este Paseador</Button>

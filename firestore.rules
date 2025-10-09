@@ -1,0 +1,23 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Reglas para la colección 'users'
+    match /users/{userId} {
+      // Un usuario puede leer y actualizar su propio perfil.
+      allow read, update: if request.auth.uid == userId;
+
+      // El superadmin tiene acceso total a cualquier perfil de usuario.
+      allow read, write: if get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'superadmin';
+
+      // Un admin puede leer todos los perfiles y actualizar perfiles de paseadores y propietarios.
+      allow read: if get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+      allow update: if get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin' 
+                    && (resource.data.role == 'paseador' || resource.data.role == 'propietario');
+    }
+
+    // TODO: Añadir reglas para otras colecciones (paseos, solicitudes, etc.)
+
+  }
+}

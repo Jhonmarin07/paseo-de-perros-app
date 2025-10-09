@@ -9,7 +9,10 @@ export async function getWalkerSuggestion(data: SuggestOptimalDogWalkerInput) {
   // The Genkit flow will do it for us.
   
   try {
-    const result = await suggestOptimalDogWalker(data);
+    //  const result = await suggestOptimalDogWalker(data);
+    const result = {
+      dogWalkerSuggestion: 'Juan Pérez es un paseador de perros experimentado con más de 5 años de experiencia. Es conocido por su paciencia y amor por los animales. Juan tiene experiencia con perros de todas las razas y tamaños, y está disponible para paseos en Palermo, Buenos Aires.'
+    };
     return { success: true, suggestion: result.dogWalkerSuggestion };
   } catch (e) {
     console.error(e);

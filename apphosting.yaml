@@ -1,7 +1,24 @@
-# Settings to manage and configure a Firebase App Hosting backend.
-# https://firebase.google.com/docs/app-hosting/configure
+# apphosting.yaml
 
-runConfig:
-  # Increase this value if you'd like to automatically spin up
-  # more instances in response to increased traffic.
-  maxInstances: 1
+# La versión del archivo de configuración de App Hosting.
+version: 1
+
+# El comando para compilar tu aplicación.
+# Este es un campo obligatorio.
+build:
+  # El comando a ejecutar para compilar tu aplicación.
+  command: npm run build
+
+# El comando para iniciar tu aplicación.
+# Este es un campo obligatorio.
+server:
+  # El comando a ejecutar para iniciar tu aplicación.
+  command: npm run start
+  # Las variables de entorno a establecer.
+  env:
+    - variable: NODE_ENV
+      value: production
+
+# La región en la que se desplegará tu aplicación.
+# Este es un campo obligatorio.
+location: us-central1
