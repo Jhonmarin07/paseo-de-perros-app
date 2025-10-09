@@ -1,36 +1,34 @@
+
 # apphosting.yaml
 
 # La versión del archivo de configuración de App Hosting.
 version: 1
 
+# Las variables de entorno a establecer para ambos, build y server.
+env:
+  - variable: NEXT_PUBLIC_FIREBASE_API_KEY
+    value: AIzaSyBINha1NlUFtEmdlTwNn3viYsmZAi0tyEg
+  - variable: NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN
+    value: studio-6276729828-9055f.firebaseapp.com
+  - variable: NEXT_PUBLIC_FIREBASE_PROJECT_ID
+    value: studio-6276729828-9055f
+  - variable: NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET
+    value: studio-6276729828-9055f.firebasestorage.app
+  - variable: NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID
+    value: "95717026051"
+  - variable: NEXT_PUBLIC_FIREBASE_APP_ID
+    value: 1:95717026051:web:20b074ad670f55938fe136
+
 # El comando para compilar tu aplicación.
-# Este es un campo obligatorio.
 build:
-  # El comando a ejecutar para compilar tu aplicación.
   command: npm run build
 
 # El comando para iniciar tu aplicación.
-# Este es un campo obligatorio.
 server:
-  # El comando a ejecutar para iniciar tu aplicación.
   command: npm run start
-  # Las variables de entorno a establecer.
   env:
     - variable: NODE_ENV
       value: production
-    - variable: NEXT_PUBLIC_FIREBASE_API_KEY
-      value: AIzaSyBINha1NlUFtEmdlTwNn3viYsmZAi0tyEg
-    - variable: NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN
-      value: studio-6276729828-9055f.firebaseapp.com
-    - variable: NEXT_PUBLIC_FIREBASE_PROJECT_ID
-      value: studio-6276729828-9055f
-    - variable: NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET
-      value: studio-6276729828-9055f.firebasestorage.app
-    - variable: NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID
-      value: "95717026051"
-    - variable: NEXT_PUBLIC_FIREBASE_APP_ID
-      value: 1:95717026051:web:20b074ad670f55938fe136
 
 # La región en la que se desplegará tu aplicación.
-# Este es un campo obligatorio.
 location: us-central1
