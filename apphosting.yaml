@@ -1,34 +1,18 @@
-
-# apphosting.yaml
-
-# La versión del archivo de configuración de App Hosting.
-version: 1
-
-# Las variables de entorno a establecer para ambos, build y server.
+# Settings for Firebase App Hosting
+run:
+  # The command to start your app
+  command: 'npm run start'
+# Environment variables that are available to your app
 env:
   - variable: NEXT_PUBLIC_FIREBASE_API_KEY
-    value: AIzaSyBINha1NlUFtEmdlTwNn3viYsmZAi0tyEg
+    value: 'AIzaSyAc-bmyzdGWFwVuorMQP6WvhEpm3cyN280'
   - variable: NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN
-    value: studio-6276729828-9055f.firebaseapp.com
+    value: 'patitas-segurasv2.firebaseapp.com'
   - variable: NEXT_PUBLIC_FIREBASE_PROJECT_ID
-    value: studio-6276729828-9055f
+    value: 'patitas-segurasv2'
   - variable: NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET
-    value: studio-6276729828-9055f.firebasestorage.app
+    value: 'patitas-segurasv2.firebasestorage.app'
   - variable: NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID
-    value: "95717026051"
+    value: '1024034448883'
   - variable: NEXT_PUBLIC_FIREBASE_APP_ID
-    value: 1:95717026051:web:20b074ad670f55938fe136
-
-# El comando para compilar tu aplicación.
-build:
-  command: npm run build
-
-# El comando para iniciar tu aplicación.
-server:
-  command: npm run start
-  env:
-    - variable: NODE_ENV
-      value: production
-
-# La región en la que se desplegará tu aplicación.
-location: us-central1
+    value: '1:1024034448883:web:2fca1100ce392cdce15e86'
